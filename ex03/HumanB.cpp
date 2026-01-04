@@ -1,12 +1,20 @@
+#include "Weapon.hpp"
 #include <HumanB.hpp>
 #include <iostream>
 
 HumanB::HumanB(std::string name) {
 	setName(name);
+	_weapon = new Weapon("hand");
 }
 
-void	HumanB::setWeapon(Weapon &weapon) {
-	*_weapon = weapon;
+HumanB::~HumanB(void) {
+	delete _weapon;
+}
+
+void	HumanB::setWeapon(Weapon *weapon) {
+	if (!weapon)
+		return;
+	_weapon = weapon;
 }
 
 Weapon	HumanB::getWeapon(void) const {
